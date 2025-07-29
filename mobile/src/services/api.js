@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://172.20.10.2:8000'; //change later for production
+const API_BASE_URL = 'http://192.168.68.73:8000'; //change later for production
 
 //videoUri is file path pointing to selected vid
 export const analyzeSwing = async (videoUri) => {
