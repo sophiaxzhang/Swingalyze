@@ -28,27 +28,22 @@ def to_python_type(obj):
 def main():
     print("Testing reference video analysis...")
     
-    # Initialize analyzer
     analyzer = SwingAnalyzer()
     
-    # Check if reference video exists
     reference_path = Path("reference.MOV")
     if not reference_path.exists():
         print("Error: reference.MOV not found in current directory")
         return
     
     try:
-        # Analyze the reference video
         print(f"Analyzing {reference_path}...")
         analysis = analyzer.analyze_video_detailed(str(reference_path))
         
-        # Print basic info
         print(f"Frame count: {analysis['frame_count']}")
         print(f"FPS: {analysis['fps']:.2f}")
         print(f"Duration: {analysis['frame_count'] / analysis['fps']:.2f} seconds")
         print(f"Swing phases: {analysis['swing_phases']}")
         
-        # Save detailed analysis
         output_file = "reference_analysis_detailed.json"
         print(f"Saving detailed analysis to {output_file}...")
         
@@ -58,7 +53,6 @@ def main():
         
         print(f"Analysis saved successfully!")
         
-        # Print some sample frame data
         print("\nSample frame data:")
         keypoints = analysis['keypoints']
         if keypoints:
@@ -68,7 +62,6 @@ def main():
                 print(f"Landmarks detected: {len(sample_frame['landmarks'])}")
                 print(f"Confidence: {sample_frame['confidence']:.3f}")
                 
-                # Show some key landmark positions
                 landmarks = sample_frame['landmarks']
                 key_landmarks = {
                     'nose': landmarks[0],
@@ -84,7 +77,6 @@ def main():
                 for name, landmark in key_landmarks.items():
                     print(f"  {name}: ({landmark['x']:.3f}, {landmark['y']:.3f}, {landmark['z']:.3f}, {landmark['visibility']:.3f})")
         
-        # Print angle statistics
         print("\nAngle statistics:")
         angles = analysis['angles']
         for angle_name, angle_values in angles.items():
